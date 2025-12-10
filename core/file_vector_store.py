@@ -174,7 +174,21 @@ class FileVectorStore:
     
     def get_all_documents(self) -> List[Dict[str, Any]]:
         """Get all document metadata"""
-        return self.metadata.copy() if self.metadata else []
+        if not self.metadata:
+            return []
+        
+        # Ensure metadata is a list of dictionaries
+        if isinstance(self.metadata, list):
+            result = []
+            for item in self.metadata:
+                if isinstance(item, dict):
+                    result.append(item)
+            return result
+        elif isinstance(self.metadata, dict):
+            # Handle case where metadata might be stored as dict (legacy format)
+            return list(self.metadata.values()) if self.metadata else []
+        
+        return []
     
     def clear(self):
         """Clear all documents from the vector store"""
