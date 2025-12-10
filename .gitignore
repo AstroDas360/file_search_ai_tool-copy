@@ -1,0 +1,99 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+.env/
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# Translations
+*.mo
+*.pot
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# macOS
+.DS_Store
+
+# Node
+node_modules/
+
+# Data directories (generated data)
+data/embeddings/
+data/uploads/
+
+# Logs
+*.log
+
+# Environment files and secrets
+.env
+.env.local
+.env.*.local
+
+# SSH keys and private keys
+id_rsa
+id_rsa.pub
+*.pem
+*.key
+
+# Jupyter
+.ipynb_checkpoints
+
+# Lock files
+poetry.lock
+Pipfile.lock
+
+# Databases
+*.sqlite3
+*.db
+
+# Misc
+*.bak
+*.swp

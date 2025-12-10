@@ -1,0 +1,14 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
+[remote "origin"]
+	url = https://github.com/AstroDas360/file_search_ai_tool-copy.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[http]
+	postBuffer = 524288000
+[lfs]
+	repositoryformatversion = 0

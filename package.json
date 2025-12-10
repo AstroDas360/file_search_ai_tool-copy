@@ -1,0 +1,34 @@
+{
+  "name": "netkathir-ai-tool",
+  "version": "2.0.0",
+  "description": "Unified AI-powered document search and vendor management platform",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && nodemon index.js",
+    "client": "cd client && PORT=3000 npm start",
+    "build": "cd client && npm run build",
+    "install-server": "cd server && npm install",
+    "install-client": "cd client && npm install",
+    "install-all": "npm install && npm run install-server && npm run install-client",
+    "start": "node server/index.js"
+  },
+  "keywords": [
+    "ai",
+    "document-search",
+    "vendor-management",
+    "semantic-search",
+    "mongodb",
+    "react",
+    "express"
+  ],
+  "author": "Netkathir",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}

@@ -1,0 +1,52 @@
+Perform all of these tasks in the same prompt.
+
+Add a user authentication page with sign up and login pages.
+Sign up page using email, userid and password creation (enter password, enter again) and send otp
+to email using # Email Configuration in .env file. it should use the email provided to send 
+emails to the users' emails using smtp.
+login page using email or userid along with password. Add a forgot password hyperlink below, 
+which should send otp to the email and show reset password (enter new password, enter again)
+login page and sign up page should have a sign up instead? or login instead? hyperlinks on the bottom leading to each other
+
+This should lead to the home page with "Welcome [User]"
+With links that lead to 4 pages. (The UI type can be whatever is best, like clickable boxes for the links, etc. use something that is standard and clean)
+One of those links should lead to the document ai search page. and one should lead to the document upload page.
+Add a home button on the top left for both pages. Other than this, don't touch anything else in these 2 pages.
+
+UI should be clean, it should follow the UI structure and colour scheme of the other pages. 
+Use mongodb for the db. tell me how to setup the mongodb in terminal before you start with the code, so i can set it up by the time you complete coding.
+Use node.js for the backend if needed.
+
+Each user should have their own data folder inside the folder data.
+
+##########After you do the above, proceed with the below: ##########
+
+In those 4 pages, 2 of them are the document ai search and the document upload. 
+
+1 of those pages is actually the vendor db ai search which is inside the folder warehouse-ai-tool. One of the links should lead to this vendor db search.
+I need you to first integrate this new code into the existing folder structure. 
+Folder and file naming should have no confusion.
+You should modify the complete folder structure/directory to contain this new addition.
+You can use the same folder/files for both if necessary and remove the duplicates.
+
+For the vendor db ai search tool, change everything to local, similar to the document ai search tool save in data folder.
+
+Now, for the 4th page, it should lead to the db management tool. 
+You can refer to TransportVendor-dev_new for the code for this page.
+You need to integrate this code into our project and folder structure.
+It should use mongodb instead of postgresql.
+And again, you can add, edit or delete files/folders as needed. everything should work together.
+Refer to the images attached in the text box for the db management UI tool. 
+It should show a list of vendors with the most important information 
+(with filterable fields. user should be able to add or remove fields from the table viewer, this is just a frontend thing.)
+the user can add, edit or delete the vendors, this should be linked to the backend.
+User should be able to import excel.
+
+
+Each user should have their own data folder, integrate it with the document search data folder.
+
+Analyze the full code, code structure, directory structure to make sure there aren't any discrepancies.
+ALL the code should work together harmoniously. There should be no redundant code/files.
+The project folder structure must be perfect and follow professional standards.
+
+All code must be professional.

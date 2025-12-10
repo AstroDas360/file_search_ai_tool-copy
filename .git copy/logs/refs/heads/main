@@ -1,0 +1,4 @@
+0000000000000000000000000000000000000000 97843bffcfb59fe73f61c26238756b9175bb0a5f Dhasarath Maraimani <119486015+AstroDas360@users.noreply.github.com> 1765171354 +0530	commit (initial): document search ai tool
+97843bffcfb59fe73f61c26238756b9175bb0a5f a9b06ce2b80d7bd79959aa358835b565d9c50f3c Dhasarath Maraimani <119486015+AstroDas360@users.noreply.github.com> 1765341532 +0530	commit: document search ai tool
+a9b06ce2b80d7bd79959aa358835b565d9c50f3c 3df94e48d9070a329a10d2596b6aa4f7e16ea91f Dhasarath Maraimani <119486015+AstroDas360@users.noreply.github.com> 1765342894 +0530	commit: added gitignore
+3df94e48d9070a329a10d2596b6aa4f7e16ea91f f5c6f0aadd461c29eb4cb991517360c226baa804 Dhasarath Maraimani <119486015+AstroDas360@users.noreply.github.com> 1765343084 +0530	commit: Add .gitignore and stop tracking .env
