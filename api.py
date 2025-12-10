@@ -3,7 +3,7 @@ Flask REST API for Document Search AI Tool
 Handles file uploads, document indexing, and semantic search
 """
 
-from flask import Flask, request, jsonify, render_template, send_file
+from flask import Flask, request, jsonify, render_template, send_file, send_from_directory
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 import os
@@ -16,24 +16,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from core.document_search import DocumentSearchEngine
 
-# Get absolute paths
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_FOLDER = os.path.join(BASE_DIR, 'static')
-TEMPLATE_FOLDER = os.path.join(BASE_DIR, 'templates')
-
-app = Flask(__name__, static_folder=STATIC_FOLDER, template_folder=TEMPLATE_FOLDER)
+app = Flask(__name__)
 CORS(app)  # Enable CORS for cross-origin requests
 app.config['MAX_CONTENT_LENGTH'] = config.MAX_FILE_SIZE
-
-# Configure static file caching and MIME types
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 3600  # Cache static files for 1 hour
-@app.after_request
-def add_header(response):
-    """Add headers to ensure static files are served with correct MIME types"""
-    if request.path and '.svg' in request.path:
-        response.headers['Content-Type'] = 'image/svg+xml'
-    response.headers['Cache-Control'] = 'public, max-age=3600'
-    return response
 
 # Initialize search engine once
 search_engine = None
@@ -62,21 +47,6 @@ def allowed_file(filename):
     return ext.lower() in config.ALLOWED_EXTENSIONS
 
 
-@app.route('/static/<path:filename>')
-def serve_static(filename):
-    """Serve static files with correct MIME types"""
-    try:
-        response = send_file(
-            os.path.join(STATIC_FOLDER, filename),
-            mimetype='image/svg+xml' if filename.endswith('.svg') else None
-        )
-        response.headers['Cache-Control'] = 'public, max-age=3600'
-        return response
-    except Exception as e:
-        print(f"Error serving static file {filename}: {e}")
-        return jsonify({'error': 'File not found'}), 404
-
-
 @app.route('/')
 def index():
     """Serve the main search page"""
@@ -86,6 +56,22 @@ def index():
         max_results=config.MAX_RESULTS,
         ui=config.UI_CONFIG
     )
+
+
+@app.route('/static/<path:filename>')
+def serve_static(filename):
+    """Serve static files with proper headers"""
+    response = send_from_directory('static', filename)
+    
+    # Set proper MIME type for SVG files
+    if filename.endswith('.svg'):
+        response.headers['Content-Type'] = 'image/svg+xml'
+    
+    # Add cache control headers to prevent caching issues
+    response.headers['Cache-Control'] = 'public, max-age=300'  # 5 minutes
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    
+    return response
 
 
 @app.route('/upload')

@@ -72,13 +72,9 @@ class DocumentSearchEngine:
             # Generate document ID
             doc_id = self._generate_doc_id(file_path)
             
-            # Truncate text for embedding to avoid token limit (8192 tokens ~= ~30K characters)
-            # Use first 25K characters for embedding to be safe
-            embedding_text = text[:25000]
-            
             # Generate embedding
             print(f"Generating embedding for: {file_info['filename']}")
-            embedding = self.embedding_generator.generate_embedding(embedding_text)
+            embedding = self.embedding_generator.generate_embedding(text)
             
             # Create metadata
             metadata = {
