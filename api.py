@@ -30,7 +30,7 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 3600  # Cache static files for 1 hour
 @app.after_request
 def add_header(response):
     """Add headers to ensure static files are served with correct MIME types"""
-    if response.path and '.svg' in response.path:
+    if request.path and '.svg' in request.path:
         response.headers['Content-Type'] = 'image/svg+xml'
     response.headers['Cache-Control'] = 'public, max-age=3600'
     return response
