@@ -16,9 +16,24 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from core.document_search import DocumentSearchEngine
 
-app = Flask(__name__)
+# Get absolute paths
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_FOLDER = os.path.join(BASE_DIR, 'static')
+TEMPLATE_FOLDER = os.path.join(BASE_DIR, 'templates')
+
+app = Flask(__name__, static_folder=STATIC_FOLDER, template_folder=TEMPLATE_FOLDER)
 CORS(app)  # Enable CORS for cross-origin requests
 app.config['MAX_CONTENT_LENGTH'] = config.MAX_FILE_SIZE
+
+# Configure static file caching and MIME types
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 3600  # Cache static files for 1 hour
+@app.after_request
+def add_header(response):
+    """Add headers to ensure static files are served with correct MIME types"""
+    if response.path and '.svg' in response.path:
+        response.headers['Content-Type'] = 'image/svg+xml'
+    response.headers['Cache-Control'] = 'public, max-age=3600'
+    return response
 
 # Initialize search engine once
 search_engine = None
@@ -45,6 +60,21 @@ def allowed_file(filename):
     """Check if file extension is allowed"""
     _, ext = os.path.splitext(filename)
     return ext.lower() in config.ALLOWED_EXTENSIONS
+
+
+@app.route('/static/<path:filename>')
+def serve_static(filename):
+    """Serve static files with correct MIME types"""
+    try:
+        response = send_file(
+            os.path.join(STATIC_FOLDER, filename),
+            mimetype='image/svg+xml' if filename.endswith('.svg') else None
+        )
+        response.headers['Cache-Control'] = 'public, max-age=3600'
+        return response
+    except Exception as e:
+        print(f"Error serving static file {filename}: {e}")
+        return jsonify({'error': 'File not found'}), 404
 
 
 @app.route('/')
